@@ -1,0 +1,63 @@
+@import "reset.scss";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  font-family: "Helvetica Neue", arial, sans-serif;
+  font-weight: 400;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #0097fe;
+  --text-color: #222;
+
+  color: var(--text-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+.page {
+  padding: 80px 10px 10px 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 420px;
+
+  &--primary {
+    background: var(--primary-color);
+    color: #fff;
+  }
+}
+
+.list {
+  margin-top: 20px;
+
+  li {
+    margin: 20px 0;
+  }
+}
+
+.alert {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}

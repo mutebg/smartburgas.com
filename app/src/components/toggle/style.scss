@@ -1,0 +1,86 @@
+.Toggle {
+  display: flex;
+  justify-content: space-between;
+
+  &--disabled {
+    //opacity: 0.5;
+
+    .Toggle__btn {
+      //background: #aaa;
+    }
+  }
+
+  &--checked {
+    .Toggle__btn {
+      background: var(--primary-color);
+
+      &:before {
+        transform: translateX(37px);
+      }
+      &:after {
+        transform: translateX(0);
+        content: "✓";
+        content: "";
+      }
+    }
+  }
+
+  &__icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    background: #ccc;
+    border-radius: 50%;
+  }
+
+  &__text {
+    margin: 0 5px;
+    flex: 1;
+  }
+
+  &__label {
+    margin-bottom: 0.3em;
+    font-weight: bold;
+  }
+
+  &__hint {
+    font-size: 0.8em;
+  }
+
+  &__btn {
+    flex: 0 0 80px;
+    width: 80px;
+    border-radius: 21px;
+    position: relative;
+    height: 42px;
+    transition: 0.4s linear;
+    //background: #d61429;
+    background: #c7c7c7;
+
+    &:after,
+    &:before {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      height: 34px;
+      width: 34px;
+      font-size: 24px;
+      border-radius: 50%;
+      transition: 0.4s linear;
+    }
+
+    &:before {
+      content: "";
+      background: #fff;
+    }
+
+    &:after {
+      //content: "×";
+      content: "";
+      transform: translateX(37px);
+      line-height: 32px;
+      text-align: center;
+      color: #fff;
+    }
+  }
+}

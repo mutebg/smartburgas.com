@@ -1,4 +1,6 @@
 const request = require("request-promise-native");
+const db = require("./db");
+
 const getAirStations = () => {
   const uri =
     "http://data.sensor.community/airrohr/v1/filter/area=42.505228,27.476211,15";
@@ -27,16 +29,47 @@ const filterOutOfNormSensors = sensors => {
   });
 };
 
-const handler = (req, res) => {
-  return getAirStations()
-    .then(data => {
-      const polutionSensors = filterPolutionTypeOfSensors(data);
-      const outOfNormSensors = filterOutOfNormSensors(polutionSensors);
-      return res.json(outOfNormSensors);
-    })
-    .catch(e => {
-      return res.json("error");
-    });
+const handler = async () => {
+  try {
+    const data = await getAirStations();
+    const polutionSensors = filterPolutionTypeOfSensors(data);
+    const outOfNormSensors = filterOutOfNormSensors(polutionSensors);
+
+    const result = {
+      lastTime: Date.now(),
+      politedSensors: outOfNormSensors.length
+    };
+    await db.addRecord("air", result);
+    await db.setLastTime("air");
+
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const makeDecision = async () => {
+  const [[record], { time }] = await Promise.all([
+    db.getLastRecords("air"),
+    db.getLastTime("air")
+  ]);
+  const hoursDiff = 1; // 5.5 * 60 * 60 * 1000;
+  //More that 6 hours and record is poluted
+  if (record.politedSensors > 0 && Date.now() - time > hoursDiff) {
+    return true;
+  }
+  return false;
+};
+
+const createMessage = async () => {
+  // TODO: query DB and generate the message
+  return Promise.resolve({
+    title: "Опасно кръвно налягане",
+    body: "Имате опасност",
+    type: "air"
+  });
 };
 
 exports.handler = handler;
+exports.makeDecision = makeDecision;
+exports.createMessage = createMessage;
