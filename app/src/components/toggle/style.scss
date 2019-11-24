@@ -26,11 +26,17 @@
   }
 
   &__icon {
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
-    background: #ccc;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    background: #f1f1f1;
     border-radius: 50%;
+
+    img {
+      width: 36px;
+      height: 36px;
+      margin: 8px;
+    }
   }
 
   &__text {

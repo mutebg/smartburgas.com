@@ -53,7 +53,7 @@ const makeDecision = async () => {
     db.getLastRecords("air"),
     db.getLastTime("air")
   ]);
-  const hoursDiff = 1; // 5.5 * 60 * 60 * 1000;
+  const hoursDiff = 0.5 * 60 * 60 * 1000;
   //More that 6 hours and record is poluted
   if (record.politedSensors > 0 && Date.now() - time > hoursDiff) {
     return true;
@@ -64,8 +64,8 @@ const makeDecision = async () => {
 const createMessage = async () => {
   // TODO: query DB and generate the message
   return Promise.resolve({
-    title: "Опасно кръвно налягане",
-    body: "Имате опасност",
+    title: "Качество на въздуха",
+    body: "Замърсяване над допустимите стойности",
     type: "air"
   });
 };

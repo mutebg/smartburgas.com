@@ -9,12 +9,17 @@ import {
 	getUserTopics
 } from '../../utils/subs';
 
-const topics = [
-	{ key: 'weather', label: 'Време', hint: 'Съобщения при опасно време' },
+const topicsOptions = [
+	{
+		key: 'weather',
+		label: 'Време',
+		hint: 'Съобщения при опасно време: код жълто, червено и тн.'
+	},
 	{
 		key: 'air',
 		label: 'Замърсяване на въздуха',
-		hint: 'Съобщения когато замърсяването в градът е над допустимите стойности'
+		hint:
+			'Съобщения когато замърсяването на въздуха е над допустимите стойности'
 	}
 ];
 
@@ -30,8 +35,7 @@ export class Home extends Component {
 
 		const permissionGranted = Notification.permission == 'granted';
 
-		const topicsState = topics.reduce((prev, next) => {
-			// TODO: Initial topic state maybe from DB or localStorage
+		const topicsState = topicsOptions.reduce((prev, next) => {
 			prev[next.key] = {
 				checked: false,
 				disabled: !permissionGranted
@@ -138,17 +142,18 @@ export class Home extends Component {
 		}
 		else {
 			// TODO: Revoke permissions
-			// There is not working browser API for that
+			// Not working browser API for that
 			// Just delete all user data from DB
+			// and local storage
 		}
 	};
 
-	render(props, { permissionGranted }) {
+	render(props, { permissionGranted, topics }) {
 		return (
 			<div class="page">
 				<button
 					onClick={this.handlePermissions}
-					class={`btn ${!permissionGranted && 'btn--primary'}`}
+					class={`btn ${!permissionGranted ? 'btn--primary' : 'btn--negative'}`}
 				>
 					{!permissionGranted
 						? 'Разреши изпращане на съобщения'
@@ -157,25 +162,25 @@ export class Home extends Component {
 
 				{permissionGranted ? (
 					<ul class="list">
-						{topics.map(({ key, label, hint }) => (
+						{topicsOptions.map(({ key, label, hint }) => (
 							<li key={key}>
 								<Toggle
 									label={label}
 									hint={hint}
 									icon={key}
 									onClick={value => this.handleSubscribe(key, value)}
-									checked={this.state.topics[key].checked}
-									disabled={this.state.topics[key].disabled}
+									checked={topics[key].checked}
+									disabled={topics[key].disabled}
 								/>
 							</li>
 						))}
 					</ul>
 				) : (
-					<p class="alert">
-						За да ви изпращаме съобщения трябва да ни разрешите. Натиснете
-						бутона
-					</p>
+					<p class="alert">Разреши изпращане на съобщения</p>
 				)}
+				<p>
+					<a href="/about">за проекта</a>
+				</p>
 			</div>
 		);
 	}

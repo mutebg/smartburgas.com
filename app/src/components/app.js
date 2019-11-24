@@ -22,6 +22,7 @@ import Header from './header';
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
+import About from '../routes/about';
 
 export default class App extends Component {
 
@@ -39,6 +40,7 @@ export default class App extends Component {
 				<Header />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
+					<About path="/about" />
 				</Router>
 			</div>
 		);
