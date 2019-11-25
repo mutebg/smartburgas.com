@@ -10,12 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Change dir
-      run: cd app
-    - name: Install deps
-      run: npm install
-    - name: Build project
-      run: npm run build
+      run: |
+        cd app
+        npm install
+        npm run build
     - name: Deploy to firebase
       run: |
-        ../
         firebase deploy 
