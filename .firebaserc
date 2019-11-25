@@ -1,5 +1,6 @@
 {
   "projects": {
-    "prod": "smartburgas-c307e"
+    "prod": "smartburgas-c307e",
+    "default": "smartburgas-c307e"
   }
 }
