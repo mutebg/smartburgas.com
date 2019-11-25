@@ -7,7 +7,7 @@
     "start": "per-env",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
-    "build": "preact build",
+    "build": "preact build --no-sw --no-prerender && cp src/firebase-messaging-sw.js build",
     "serve": "preact build && serve build --single --no-sw",
     "dev": "preact watch --no-sw",
     "lint": "eslint src",

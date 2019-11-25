@@ -33,7 +33,7 @@ const send = (tokens, data) => {
 
 const ping = async (req, res) => {
   try {
-    const handlers = { air, weather };
+    const handlers = { weather };
     await Promise.all(Object.values(handlers).map(h => h.handler()));
 
     const usersData = await db.getAllUsers();
@@ -43,8 +43,9 @@ const ping = async (req, res) => {
       const tokens = usersSortedByTopic[type];
       const handler = handlers[type];
       const decision = await handler.makeDecision();
-      if (decision) {
+      if (decision && tokens.length) {
         const message = await handler.createMessage();
+        await db.setLastTime(type);
         return await send(tokens, message);
       } else {
         return Promise.resolve("not now");
