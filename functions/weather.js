@@ -1,5 +1,6 @@
 const request = require("request-promise-native");
 const _ = require("lodash");
+const functions = require("firebase-functions");
 const db = require("./db");
 
 const getWeather = () => {
@@ -39,7 +40,7 @@ const makeDecision = async () => {
   console.log(record, time);
   const hoursDiff = 6 * 60 * 60 * 1000;
   //More that 6 hours and record is poluted
-  if (record.alerts > 0 && Date.now() - time > hoursDiff) {
+  if (_.get(record, "alerts", 0) > 0 && Date.now() - time > hoursDiff) {
     return true;
   }
   return false;

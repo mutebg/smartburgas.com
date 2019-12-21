@@ -179,7 +179,7 @@ export class Home extends Component {
 					<p class="alert">Разреши изпращане на съобщения</p>
 				)}
 				<p>
-					<a href="/about">за проекта</a>
+					<a href="/about">за проектът</a>
 				</p>
 			</div>
 		);

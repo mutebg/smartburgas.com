@@ -17,9 +17,13 @@ const sortUsersByTopic = users => {
 };
 
 const send = (tokens, data) => {
+  const myToken =
+    "fJfDN7I-I473IAInAOmsD0:APA91bHAD6vwlHvdV_JfMVXR-k-zPj_bzFcpjUEvaU6CihwKwM16E69qpWsheyGKXBpAiSUPDpwChfYyGWTC05_8NKSe7cfS4u3k0vpHof4XHJxLVQzauLXmIJxeo3HPnqedCd6nhga-";
+
   const message = {
     data,
     tokens
+    //tokens: [myToken]
   };
 
   return admin
@@ -33,7 +37,7 @@ const send = (tokens, data) => {
 
 const ping = async (req, res) => {
   try {
-    const handlers = { weather };
+    const handlers = { air, weather };
     await Promise.all(Object.values(handlers).map(h => h.handler()));
 
     const usersData = await db.getAllUsers();
