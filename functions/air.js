@@ -51,7 +51,7 @@ const makeDecision = async () => {
     db.getLastRecords("air"),
     db.getLastTime("air")
   ]);
-  const hoursDiff = 6 * 60 * 60 * 1000;
+  const hoursDiff = 8 * 60 * 60 * 1000;
   //More that 6 hours and record is poluted
   if (record.politedSensors > 0 && Date.now() - time > hoursDiff) {
     return true;
