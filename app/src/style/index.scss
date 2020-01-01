@@ -19,6 +19,10 @@ body {
   color: var(--text-color);
 }
 
+strong {
+  font-weight: bold;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -64,4 +68,9 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-top: 20px;
+}
+
+.air-iframe {
+  width: 100%;
+  height: calc(100vh - 80px);
 }

@@ -6,7 +6,8 @@ const db = require("./db");
 const getWeather = () => {
   const apiKey = functions.config().apikey.darksky;
   const coord = "42.504553, 27.471796"; // Burgas
-  //const coord = "44.499557, 11.343360"; // Alpies for testing
+  // const coord = "44.499557, 11.343360"; // Alpies for testing
+  // const coord = "67.603399, 15.727734";
   const exclude = "currently,minutely,hourly,daily,flags";
   const uri = `https://api.darksky.net/forecast/${apiKey}/${coord}?lang=bg&exclude=${exclude}`;
   return request({ uri, json: true });
@@ -37,7 +38,6 @@ const makeDecision = async () => {
     db.getLastRecords("weather"),
     db.getLastTime("weather")
   ]);
-  console.log(record, time);
   const hoursDiff = 8 * 60 * 60 * 1000;
   //More that 6 hours and record is poluted
   if (_.get(record, "alerts", 0) > 0 && Date.now() - time > hoursDiff) {

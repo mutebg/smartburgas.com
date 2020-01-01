@@ -18,7 +18,8 @@ const sortUsersByTopic = users => {
 
 const send = (tokens, data) => {
   const myToken =
-    "fJfDN7I-I473IAInAOmsD0:APA91bHAD6vwlHvdV_JfMVXR-k-zPj_bzFcpjUEvaU6CihwKwM16E69qpWsheyGKXBpAiSUPDpwChfYyGWTC05_8NKSe7cfS4u3k0vpHof4XHJxLVQzauLXmIJxeo3HPnqedCd6nhga-";
+    "dM0MmzJQuWJQpm8jds0-BZ:APA91bFIprdKFdqAVOhxhGWXeUsxJeOvqL_M8zJoy9jIfnyV18la7mSoQbApbGzyxD2ILt-G8fDoMmQjL0XTGUBL9Rh3JsyFgIy8TBmHmf43lzpfV3eqrWl42uC4J_0dMZN_z1aw6gOc";
+  // "fJfDN7I-I473IAInAOmsD0:APA91bHAD6vwlHvdV_JfMVXR-k-zPj_bzFcpjUEvaU6CihwKwM16E69qpWsheyGKXBpAiSUPDpwChfYyGWTC05_8NKSe7cfS4u3k0vpHof4XHJxLVQzauLXmIJxeo3HPnqedCd6nhga-";
 
   const message = {
     data,
