@@ -1,5 +1,6 @@
 const request = require("request-promise-native");
 const db = require("./db");
+const _ = require("lodash");
 
 const getAirStations = () => {
   const uri =
@@ -53,7 +54,7 @@ const makeDecision = async () => {
   ]);
   const hoursDiff = 8 * 60 * 60 * 1000;
   //More that 6 hours and record is poluted
-  if (record.politedSensors > 0 && Date.now() - time > hoursDiff) {
+  if (_.get(record, "politedSensors", 0) > 0 && Date.now() - time > hoursDiff) {
     return true;
   }
   return false;
